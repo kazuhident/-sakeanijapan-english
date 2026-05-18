@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SakeAni JAPAN | English Phrase Master — JapanFest Atlanta 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1410;
+  --ink-soft: #4a3f35;
+  --ink-muted: #8a7a6e;
+  --paper: #faf6f0;
+  --paper-warm: #f3ede3;
+  --paper-card: #fff9f2;
+  --accent: #8B2020;
+  --accent-soft: #c45050;
+  --accent-bg: #fdf0f0;
+  --gold: #b8860b;
+  --gold-soft: #e8d090;
+  --gold-bg: #fdf9ee;
+  --teal: #2a6b6b;
+  --teal-bg: #edf6f6;
+  --border: rgba(26,20,16,0.12);
+  --border-strong: rgba(26,20,16,0.22);
+  --radius: 10px;
+  --radius-lg: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+  line-height: 1.7;
+}
+
+/* HEADER */
+.header {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 2rem 1.5rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '酒';
+  position: absolute;
+  right: -20px; top: -30px;
+  font-family: 'Shippori Mincho', serif;
+  font-size: 200px;
+  color: rgba(255,255,255,0.04);
+  pointer-events: none;
+}
+.header-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.brand {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: rgba(250,246,240,0.5);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.header h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+.header h1 span { color: #d4826a; }
+.header-sub {
+  font-size: 13px;
+  color: rgba(250,246,240,0.55);
+  margin-top: 6px;
+  font-weight: 300;
+}
+.badge-fest {
+  background: var(--accent);
+  color: white;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 999px;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+/* TABS */
+.tabs-wrap {
+  background: var(--ink);
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.tabs {
+  display: flex;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.tab-btn {
+  padding: 14px 20px;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(250,246,240,0.45);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.tab-btn:hover { color: rgba(250,246,240,0.75); }
+.tab-btn.active {
+  color: var(--paper);
+  border-bottom-color: #d4826a;
+  font-weight: 500;
+}
+
+/* MAIN */
+.main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+.section { display: none; }
+.section.active { display: block; }
+
+/* PHRASE LIST */
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+.search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 180px;
+  max-width: 260px;
+}
+.search-wrap svg {
+  position: absolute;
+  left: 10px; top: 50%;
+  transform: translateY(-50%);
+  width: 14px; height: 14px;
+  stroke: var(--ink-muted);
+}
+.search-input {
+  width: 100%;
+  padding: 8px 12px 8px 32px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--paper-card);
+  font-size: 13px;
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.search-input:focus { border-color: var(--accent-soft); }
+.filter-btn {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink-soft);
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.filter-btn:hover { background: var(--paper-warm); }
+.filter-btn.active {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.phrase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+.phrase-card {
+  background: var(--paper-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+}
+.phrase-card:hover { border-color: var(--border-strong); transform: translateY(-1px); }
+.phrase-card.selected { border-color: var(--accent); border-width: 1.5px; background: var(--accent-bg); }
+.phrase-card .num {
+  font-size: 11px;
+  color: var(--ink-muted);
+  font-weight: 300;
+  margin-bottom: 4px;
+}
+.phrase-cat {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+.cat-greeting { background: #eef6fd; color: #1a5fa8; }
+.cat-product { background: var(--gold-bg); color: var(--gold); }
+.cat-business { background: var(--teal-bg); color: var(--teal); }
+.cat-event { background: #f3eefe; color: #6b3fa0; }
+.cat-closing { background: var(--accent-bg); color: var(--accent); }
+
+.phrase-en {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+.phrase-jp {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.phrase-ex {
+  font-size: 12px;
+  color: var(--ink-muted);
+  font-style: italic;
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+  line-height: 1.5;
+}
+.no-results {
+  text-align: center;
+  padding: 3rem;
+  color: var(--ink-muted);
+  font-size: 14px;
+  grid-column: 1/-1;
+}
+
+/* ROLEPLAY */
+.scenario-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+.sc-btn {
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-strong);
+  background: var(--paper-card);
+  cursor: pointer;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink-soft);
+  transition: all 0.15s;
+}
+.sc-btn:hover { background: var(--paper-warm); }
+.sc-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+.scenario-info {
+  background: var(--paper-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+.scenario-info h3 { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+.scenario-info p { font-size: 13px; color: var(--ink-soft); }
+
+.hint-box {
+  background: var(--gold-bg);
+  border: 1px solid var(--gold-soft);
+  border-radius: var(--radius);
+  padding: 0.875rem 1rem;
+  margin-bottom: 1rem;
+}
+.hint-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gold);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.hint-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+.hint-pill {
+  background: white;
+  border: 1px solid var(--gold-soft);
+  padding: 3px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--ink-soft);
+  transition: background 0.1s;
+  font-family: 'DM Sans', sans-serif;
+}
+.hint-pill:hover { background: var(--paper-warm); }
+
+.chat-area {
+  background: var(--paper-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  min-height: 220px;
+  max-height: 360px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  scroll-behavior: smooth;
+}
+.msg { margin-bottom: 14px; overflow: hidden; }
+.msg-role { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 3px; }
+.msg-role.partner { color: var(--teal); }
+.msg-role.user { color: var(--accent); text-align: right; }
+.msg-bubble {
+  font-size: 14px;
+  line-height: 1.55;
+  padding: 9px 13px;
+  border-radius: var(--radius);
+  display: inline-block;
+  max-width: 80%;
+}
+.msg-bubble.partner {
+  background: var(--teal-bg);
+  border: 1px solid rgba(42,107,107,0.15);
+  border-radius: 2px var(--radius) var(--radius) var(--radius);
+}
+.msg-bubble.user {
+  background: var(--accent-bg);
+  border: 1px solid rgba(139,32,32,0.12);
+  border-radius: var(--radius) 2px var(--radius) var(--radius);
+  float: right;
+}
+.msg.user { text-align: right; }
+.msg-jp { font-size: 11px; color: var(--ink-muted); margin-top: 3px; }
+.msg.user .msg-jp { text-align: right; }
+
+.input-row { display: flex; gap: 8px; }
+.chat-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--paper-card);
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.chat-input:focus { border-color: var(--accent-soft); }
+.send-btn {
+  padding: 10px 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  transition: opacity 0.15s;
+  white-space: nowrap;
+}
+.send-btn:hover { opacity: 0.85; }
+
+/* QUIZ */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 1.25rem;
+}
+.stat-card {
+  background: var(--paper-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  text-align: center;
+}
+.stat-num {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-lbl { font-size: 11px; color: var(--ink-muted); letter-spacing: 0.05em; }
+
+.progress-wrap { margin-bottom: 1.25rem; }
+.progress-bar {
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+.progress-label {
+  font-size: 11px;
+  color: var(--ink-muted);
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.quiz-card {
+  background: var(--paper-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+.quiz-q {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+  line-height: 1.4;
+}
+.quiz-opts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+@media (max-width: 480px) { .quiz-opts { grid-template-columns: 1fr; } }
+.quiz-opt {
+  padding: 12px 16px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink);
+  text-align: left;
+  transition: all 0.15s;
+  line-height: 1.4;
+}
+.quiz-opt:hover:not(:disabled) { border-color: var(--ink); background: var(--paper-warm); }
+.quiz-opt.correct { background: #e8f7ef; color: #1a6b3a; border-color: #7bc99a; }
+.quiz-opt.wrong { background: var(--accent-bg); color: var(--accent); border-color: #e89090; }
+.quiz-result {
+  padding: 1rem;
+  border-radius: var(--radius);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 0.5rem;
+}
+.quiz-result.correct { background: #e8f7ef; color: #1a6b3a; }
+.quiz-result.wrong { background: var(--accent-bg); color: var(--accent); }
+.quiz-result strong { font-weight: 500; }
+.next-btn {
+  margin-top: 1rem;
+  padding: 9px 22px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink-soft);
+  transition: all 0.15s;
+}
+.next-btn:hover { background: var(--paper-warm); color: var(--ink); }
+
+.complete-card {
+  text-align: center;
+  padding: 2.5rem;
+}
+.complete-score {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+  margin: 1rem 0 0.5rem;
+}
+.complete-pct {
+  font-size: 18px;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+.complete-msg { font-size: 14px; color: var(--ink-soft); margin-bottom: 1.5rem; }
+.retry-btn {
+  padding: 12px 28px;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  transition: opacity 0.15s;
+}
+.retry-btn:hover { opacity: 0.82; }
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  font-size: 11px;
+  color: var(--ink-muted);
+  border-top: 1px solid var(--border);
+  margin-top: 3rem;
+  letter-spacing: 0.05em;
+}
+
+/* SCROLLBAR */
+.chat-area::-webkit-scrollbar { width: 4px; }
+.chat-area::-webkit-scrollbar-track { background: transparent; }
+.chat-area::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-top">
+    <div>
+      <div class="brand">SakeAni JAPAN × JapanFest Atlanta 2026</div>
+      <h1>English Phrase<br><span>Master</span></h1>
+      <div class="header-sub">關係者向け英会話学習ツール — 50フレーズ完全収録</div>
+    </div>
+    <span class="badge-fest">Atlanta 2026</span>
+  </div>
+</header>
+
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('phrases',this)">📋 フレーズ一覧</button>
+    <button class="tab-btn" onclick="showTab('roleplay',this)">🎭 ロールプレイ</button>
+    <button class="tab-btn" onclick="showTab('quiz',this)">🎯 クイズ</button>
+  </div>
+</div>
+
+<main class="main">
+
+<!-- PHRASES TAB -->
+<div id="phrases" class="section active">
+  <div class="filter-bar">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input class="search-input" id="searchInput" type="text" placeholder="キーワード検索..." oninput="renderPhrases()">
+    </div>
+    <button class="filter-btn active" onclick="setFilter('all',this)">すべて</button>
+    <button class="filter-btn" onclick="setFilter('greeting',this)">挨拶</button>
+    <button class="filter-btn" onclick="setFilter('product',this)">商品説明</button>
+    <button class="filter-btn" onclick="setFilter('business',this)">ビジネス</button>
+    <button class="filter-btn" onclick="setFilter('event',this)">イベント</button>
+    <button class="filter-btn" onclick="setFilter('closing',this)">クロージング</button>
+  </div>
+  <div class="phrase-grid" id="phraseGrid"></div>
+</div>
+
+<!-- ROLEPLAY TAB -->
+<div id="roleplay" class="section">
+  <div class="scenario-tabs" id="scenarioTabs"></div>
+  <div class="scenario-info" id="scenarioInfo"></div>
+  <div class="hint-box" id="hintBox"></div>
+  <div class="chat-area" id="chatArea"></div>
+  <div class="input-row">
+    <input class="chat-input" id="chatInput" type="text" placeholder="英語でメッセージを入力してください..." onkeydown="if(event.key==='Enter')sendChat()">
+    <button class="send-btn" onclick="sendChat()">送信 →</button>
+  </div>
+</div>
+
+<!-- QUIZ TAB -->
+<div id="quiz" class="section">
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-num" id="qScore">0</div><div class="stat-lbl">正解数</div></div>
+    <div class="stat-card"><div class="stat-num" id="qTotal">0</div><div class="stat-lbl">挑戦数</div></div>
+    <div class="stat-card"><div class="stat-num" id="qPct">—</div><div class="stat-lbl">正答率</div></div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span id="progressLabel">問題 0 / 50</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  </div>
+  <div id="quizContent"></div>
+</div>
+
+</main>
+
+<footer class="footer">
+  SAKEANIJAPAN株式会社 × KOKUSHU — 國酒聲醸 KOKUSHU SEIJO<br>
+  このツールはJapanFest Atlanta 2026出展チーム向けに作成されました
+</footer>
+
+<script>
+const phrases = [
+  {id:1,en:"Nice to meet you!",jp:"はじめまして！",ex:"Nice to meet you! I'm Kazu from SakeAni Japan.",cat:"greeting"},
+  {id:2,en:"Thank you for stopping by.",jp:"お立ち寄りいただきありがとうございます。",ex:"Thank you for stopping by our booth!",cat:"greeting"},
+  {id:3,en:"Welcome to our booth!",jp:"ブースへようこそ！",ex:"Welcome to our booth — we're glad you're here.",cat:"greeting"},
+  {id:4,en:"Please feel free to try a sample.",jp:"ぜひサンプルをお試しください。",ex:"Please feel free to try a sample of our sake.",cat:"greeting"},
+  {id:5,en:"Are you familiar with Japanese sake?",jp:"日本酒はご存知ですか？",ex:"Are you familiar with Japanese sake? Let me introduce you.",cat:"greeting"},
+  {id:6,en:"This is a limited edition.",jp:"これは限定版です。",ex:"This is a limited edition sake crafted in Kyoto.",cat:"product"},
+  {id:7,en:"It has a smooth, rich flavor.",jp:"なめらかで濃厚な風味です。",ex:"It has a smooth, rich flavor with floral notes.",cat:"product"},
+  {id:8,en:"This sake pairs well with seafood.",jp:"このお酒はシーフードとよく合います。",ex:"This sake pairs well with seafood and light dishes.",cat:"product"},
+  {id:9,en:"It's brewed in a centuries-old tradition.",jp:"何世紀もの伝統で醸造されています。",ex:"It's brewed in a centuries-old tradition in rural Japan.",cat:"product"},
+  {id:10,en:"The voice actor narrates the story behind each bottle.",jp:"声優がボトル裏のストーリーをナレーションします。",ex:"The voice actor narrates the story — it's a unique experience.",cat:"product"},
+  {id:11,en:"We offer a subscription service.",jp:"サブスクリプションサービスを提供しています。",ex:"We offer a subscription service with four seasonal deliveries.",cat:"product"},
+  {id:12,en:"You'll receive four seasonal shipments per year.",jp:"年に4回季節の配送があります。",ex:"You'll receive four seasonal shipments per year — spring to winter.",cat:"product"},
+  {id:13,en:"Each box includes exclusive audio content.",jp:"各ボックスには限定音声コンテンツが含まれます。",ex:"Each box includes exclusive audio content narrated in Japanese.",cat:"product"},
+  {id:14,en:"We bridge tradition and entertainment.",jp:"伝統とエンターテインメントをつなぎます。",ex:"We bridge tradition and entertainment through sake and voice acting.",cat:"business"},
+  {id:15,en:"Our goal is to globalize Japanese culture.",jp:"目標は日本文化のグローバル化です。",ex:"Our goal is to globalize Japanese culture through storytelling.",cat:"business"},
+  {id:16,en:"We're looking for potential partners.",jp:"潜在的なパートナーを探しています。",ex:"We're looking for potential partners in the US market.",cat:"business"},
+  {id:17,en:"Could I have your business card?",jp:"名刺をいただけますか？",ex:"Could I have your business card? I'd love to follow up.",cat:"business"},
+  {id:18,en:"Shall we schedule a meeting?",jp:"ミーティングを設定しましょうか？",ex:"Shall we schedule a meeting to discuss this further?",cat:"business"},
+  {id:19,en:"We'd love to collaborate with you.",jp:"ぜひコラボレーションしたいです。",ex:"We'd love to collaborate with you on this project.",cat:"business"},
+  {id:20,en:"This is a unique investment opportunity.",jp:"これはユニークな投資機会です。",ex:"This is a unique investment opportunity in the IP space.",cat:"business"},
+  {id:21,en:"Our revenue model is multi-layered.",jp:"収益モデルは多層構造です。",ex:"Our revenue model is multi-layered — subscriptions, events, and licensing.",cat:"business"},
+  {id:22,en:"We've partnered with top voice actors.",jp:"トップ声優とパートナーシップを結んでいます。",ex:"We've partnered with top voice actors in Japan.",cat:"business"},
+  {id:23,en:"The anime industry is booming globally.",jp:"アニメ業界は世界的に急成長しています。",ex:"The anime industry is booming globally — over $30B market.",cat:"business"},
+  {id:24,en:"Japan's sake breweries are family-run.",jp:"日本の酒蔵は家族経営です。",ex:"Japan's sake breweries are family-run, with generations of expertise.",cat:"business"},
+  {id:25,en:"We're exhibiting for the first time.",jp:"初めて出展しています。",ex:"We're exhibiting for the first time at JapanFest Atlanta.",cat:"event"},
+  {id:26,en:"This event attracts over 22,000 visitors.",jp:"このイベントは22,000人以上の来場者を集めます。",ex:"This event attracts over 22,000 visitors each year.",cat:"event"},
+  {id:27,en:"Please scan this QR code to subscribe.",jp:"このQRコードをスキャンしてご登録ください。",ex:"Please scan this QR code to subscribe and get 10% off.",cat:"event"},
+  {id:28,en:"We have a live demonstration every hour.",jp:"毎時間ライブデモがあります。",ex:"We have a live demonstration every hour — please join us!",cat:"event"},
+  {id:29,en:"Take a flyer for more information.",jp:"詳細はチラシをどうぞ。",ex:"Take a flyer for more information about our subscription.",cat:"event"},
+  {id:30,en:"This is our flagship product.",jp:"これは当社の主力製品です。",ex:"This is our flagship product — the seasonal sake box.",cat:"product"},
+  {id:31,en:"The sound of the brewery is recorded live.",jp:"酒蔵の音はライブで録音されます。",ex:"The sound of the brewery — fermenting, flowing — is recorded live.",cat:"product"},
+  {id:32,en:"It's an immersive experience.",jp:"没入型体験です。",ex:"It's an immersive experience combining sound, story, and sake.",cat:"product"},
+  {id:33,en:"We ship internationally.",jp:"国際配送しています。",ex:"We ship internationally — including to the United States.",cat:"product"},
+  {id:34,en:"This is a one-of-a-kind concept.",jp:"他に類を見ないコンセプトです。",ex:"This is a one-of-a-kind concept — nowhere else in the world.",cat:"business"},
+  {id:35,en:"We combine IP with traditional craft.",jp:"IPと伝統工芸を組み合わせます。",ex:"We combine IP with traditional craft for a global audience.",cat:"business"},
+  {id:36,en:"Our long-term vision includes animation.",jp:"長期ビジョンにはアニメ化が含まれます。",ex:"Our long-term vision includes animation based on these stories.",cat:"business"},
+  {id:37,en:"Would you like a tasting?",jp:"試飲はいかがですか？",ex:"Would you like a tasting? We have three varieties today.",cat:"event"},
+  {id:38,en:"Please enjoy the aroma first.",jp:"まず香りをお楽しみください。",ex:"Please enjoy the aroma first — it's quite floral.",cat:"event"},
+  {id:39,en:"This is brewed in Niigata Prefecture.",jp:"これは新潟県で醸造されています。",ex:"This is brewed in Niigata Prefecture, famous for clean water.",cat:"product"},
+  {id:40,en:"Let me share our website with you.",jp:"ウェブサイトをご紹介します。",ex:"Let me share our website — all details are there.",cat:"closing"},
+  {id:41,en:"We'd appreciate your feedback.",jp:"ご意見をいただけると幸いです。",ex:"We'd appreciate your feedback on today's tasting.",cat:"closing"},
+  {id:42,en:"Please stay in touch.",jp:"ぜひ連絡を取り合いましょう。",ex:"Please stay in touch — my email is on the card.",cat:"closing"},
+  {id:43,en:"It was a pleasure meeting you.",jp:"お会いできて光栄です。",ex:"It was a pleasure meeting you. Hope to see you again!",cat:"closing"},
+  {id:44,en:"I'll follow up with more details.",jp:"詳細を追ってご連絡します。",ex:"I'll follow up with more details about our partnership plan.",cat:"closing"},
+  {id:45,en:"Thank you for your interest!",jp:"ご興味をお持ちいただきありがとうございます！",ex:"Thank you for your interest! We're excited to connect.",cat:"closing"},
+  {id:46,en:"Please visit us again tomorrow.",jp:"明日もぜひお越しください。",ex:"Please visit us again tomorrow — we'll have new samples.",cat:"closing"},
+  {id:47,en:"Here's our early bird discount.",jp:"これは早期割引です。",ex:"Here's our early bird discount — 20% off first year.",cat:"closing"},
+  {id:48,en:"We look forward to working with you.",jp:"ご一緒できることを楽しみにしています。",ex:"We look forward to working with you on this exciting project.",cat:"closing"},
+  {id:49,en:"Our passion is to share Japanese culture.",jp:"私たちの情熱は日本文化を広めることです。",ex:"Our passion is to share Japanese culture with the world.",cat:"business"},
+  {id:50,en:"Feel the spirit of Japan in every sip.",jp:"一口ごとに日本の魂を感じてください。",ex:"Feel the spirit of Japan in every sip — kanpai!",cat:"product"},
+];
+
+const scenarios = [
+  {id:"booth",title:"🎪 ブース来場者",desc:"JapanFest Atlantaのブースに来場者が立ち寄りました。サービスを紹介しましょう。",
+    starter:{en:"Hi there! What is this booth about?",jp:"こんにちは！このブースは何ですか？"},
+    flow:[
+      {trigger:["sake","japanese","subscription","anime","voice","what","tell","explain","about","introduce"],en:"Oh wow, sake AND voice actors? That's so creative! How does the subscription work?",jp:"お酒と声優？すごくユニーク！サブスクの仕組みを教えてください。"},
+      {trigger:["four","seasonal","ship","deliver","year","box","audio","content","story","receive"],en:"That sounds amazing! Do you ship to the US?",jp:"素晴らしい！アメリカにも配送しますか？"},
+      {trigger:["ship","international","us","united","yes","america","worldwide","internationally"],en:"I'd love to try it! Can I sign up here?",jp:"ぜひ試したい！ここで申し込めますか？"},
+      {trigger:["qr","scan","website","sign","register","here","today","link"],en:"Great! And is there a tasting I can do first?",jp:"ありがとう！先に試飲できますか？"},
+      {trigger:["taste","try","sample","tasting","enjoy","feel","sip","aroma"],en:"Delicious! Here's my card — please stay in touch!",jp:"美味しい！名刺です。ぜひ連絡を！"},
+    ],
+    hints:[1,2,3,12,13,27,33,37,50]
+  },
+  {id:"partner",title:"🤝 パートナー商談",desc:"現地の日系企業担当者との商談。ビジネス提携の可能性を探る会話です。",
+    starter:{en:"I heard about your project — sounds very interesting. Tell me more.",jp:"プロジェクトを聞きました。面白そうですね。もっと教えてください。"},
+    flow:[
+      {trigger:["bridge","tradition","entertainment","culture","global","ip","combine","unique","one","kind"],en:"Interesting! What's your revenue model exactly?",jp:"面白い！収益モデルはどういうものですか？"},
+      {trigger:["subscription","revenue","multi","layer","license","event","model","layered"],en:"And the voice actors — are they already on board?",jp:"声優はもう参加していますか？"},
+      {trigger:["partner","voice","actor","anime","top","signed","partnered","avex"],en:"We might be interested in co-sponsoring. What would that look like?",jp:"共同スポンサーに興味があります。どういう形になりますか？"},
+      {trigger:["collaborate","partner","discuss","meeting","schedule","opportunity","love"],en:"Let's set up a meeting next week. Could I have your card?",jp:"来週ミーティングしましょう。名刺をいただけますか？"},
+      {trigger:["card","business","follow","touch","contact","email","sure","here"],en:"Excellent. We look forward to hearing from you soon!",jp:"素晴らしい。ご連絡お待ちしています！"},
+    ],
+    hints:[14,16,17,18,19,20,21,22,34,35,36]
+  },
+  {id:"media",title:"📰 メディア取材",desc:"ローカルメディアの記者が取材に来ました。プロジェクトの魅力を伝えましょう。",
+    starter:{en:"Hi, I'm from Atlanta Japan Times. Can I ask a few questions about your project?",jp:"アトランタジャパンタイムズです。プロジェクトについて伺えますか？"},
+    flow:[
+      {trigger:["yes","sure","please","happy","glad","welcome","course","absolutely"],en:"What makes your concept different from other sake brands here?",jp:"他のお酒ブランドと何が違うのですか？"},
+      {trigger:["one","unique","kind","concept","voice","actor","story","immersive","experience","audio"],en:"Voice actors in sake — that's a first! What's the long-term vision?",jp:"お酒と声優は初めて聞きました！長期的なビジョンは？"},
+      {trigger:["animation","anime","global","ip","vision","long","future","term"],en:"Fascinating. How many breweries are involved?",jp:"興味深い。何蔵が関わっていますか？"},
+      {trigger:["brewery","breweries","partner","japan","regional","local","nationwide","across"],en:"Any message for Japanese culture fans here in Atlanta?",jp:"アトランタの日本文化ファンへメッセージをどうぞ。"},
+      {trigger:["spirit","culture","passion","share","sip","kanpai","feel","japan","world","every"],en:"Wonderful! Thank you so much. I'll feature you in next week's issue!",jp:"素晴らしい！来週号に掲載します！"},
+    ],
+    hints:[32,15,34,36,50,39,49,31]
+  }
+];
+
+// State
+let currentFilter = "all";
+let currentScenario = 0;
+let chatStep = 0;
+let quizPhrases = [];
+let quizIndex = 0;
+let quizScore = 0;
+let quizTotal = 0;
+let quizAnswered = false;
+
+const catLabels = {greeting:"挨拶",product:"商品説明",business:"ビジネス",event:"イベント",closing:"クロージング"};
+
+function showTab(tab, btn) {
+  document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  document.getElementById(tab).classList.add("active");
+  btn.classList.add("active");
+  if (tab === "roleplay") initRoleplay();
+  if (tab === "quiz" && quizPhrases.length === 0) initQuiz();
+}
+
+// PHRASES
+function renderPhrases() {
+  const q = document.getElementById("searchInput").value.toLowerCase();
+  const filtered = phrases.filter(p => {
+    const okCat = currentFilter === "all" || p.cat === currentFilter;
+    const okQ = !q || p.en.toLowerCase().includes(q) || p.jp.includes(q) || p.ex.toLowerCase().includes(q);
+    return okCat && okQ;
+  });
+  const grid = document.getElementById("phraseGrid");
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="no-results">該当するフレーズが見つかりません</div>';
+    return;
+  }
+  grid.innerHTML = filtered.map(p => `
+    <div class="phrase-card" onclick="this.classList.toggle('selected')">
+      <div class="num">#${String(p.id).padStart(2,"0")}</div>
+      <span class="phrase-cat cat-${p.cat}">${catLabels[p.cat]||p.cat}</span>
+      <div class="phrase-en">${p.en}</div>
+      <div class="phrase-jp">${p.jp}</div>
+      <div class="phrase-ex">${p.ex}</div>
+    </div>
+  `).join("");
+}
+
+function setFilter(cat, btn) {
+  currentFilter = cat;
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  renderPhrases();
+}
+
+// ROLEPLAY
+function initRoleplay() {
+  chatStep = 0;
+  const tabs = document.getElementById("scenarioTabs");
+  tabs.innerHTML = scenarios.map((s,i) => `
+    <button class="sc-btn${i===currentScenario?" active":""}" onclick="selectScenario(${i})">${s.title}</button>
+  `).join("");
+  loadScenario();
+}
+
+function selectScenario(i) {
+  currentScenario = i;
+  chatStep = 0;
+  initRoleplay();
+}
+
+function loadScenario() {
+  const s = scenarios[currentScenario];
+  document.getElementById("scenarioInfo").innerHTML = `<h3>${s.title}</h3><p>${s.desc}</p>`;
+  const hintPhrases = s.hints.map(id => phrases.find(p => p.id === id)).filter(Boolean);
+  document.getElementById("hintBox").innerHTML = `
+    <div class="hint-label">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      ヒント：こんなフレーズが使えます（クリックで入力）
+    </div>
+    <div class="hint-pills">${hintPhrases.map(p=>`<button class="hint-pill" onclick="useHint('${p.en.replace(/'/g,"\\'")}')">${p.en.substring(0,28)}…</button>`).join("")}</div>
+  `;
+  document.getElementById("chatArea").innerHTML = `
+    <div class="msg">
+      <div class="msg-role partner">相手 / Partner</div>
+      <div class="msg-bubble partner">${s.starter.en}</div>
+      <div class="msg-jp">${s.starter.jp}</div>
+    </div>
+  `;
+}
+
+function useHint(text) {
+  const input = document.getElementById("chatInput");
+  input.value = text;
+  input.focus();
+}
+
+function sendChat() {
+  const input = document.getElementById("chatInput");
+  const text = input.value.trim();
+  if (!text) return;
+  const s = scenarios[currentScenario];
+  const chatArea = document.getElementById("chatArea");
+  chatArea.innerHTML += `
+    <div class="msg user">
+      <div class="msg-role user">あなた / You</div>
+      <div class="msg-bubble user">${text}</div>
+    </div>
+  `;
+  input.value = "";
+  chatArea.scrollTop = chatArea.scrollHeight;
+  const words = text.toLowerCase().split(/\W+/);
+  let reply;
+  if (chatStep < s.flow.length) {
+    const step = s.flow[chatStep];
+    const matched = step.trigger.some(t => words.some(w => w === t || t.includes(w) && w.length > 3) || text.toLowerCase().includes(t));
+    reply = matched ? (chatStep++, step) : [{en:"Could you tell me a bit more about that?",jp:"もう少し詳しく教えていただけますか？"},{en:"That's interesting! What else can you share?",jp:"面白い！他に何か教えていただけますか？"}][chatStep%2];
+  } else {
+    reply = {en:"Thank you so much! This has been wonderful. Kanpai! 🍶",jp:"ありがとうございました！素晴らしかったです。乾杯！"};
+  }
+  setTimeout(() => {
+    chatArea.innerHTML += `
+      <div class="msg">
+        <div class="msg-role partner">相手 / Partner</div>
+        <div class="msg-bubble partner">${reply.en}</div>
+        <div class="msg-jp">${reply.jp}</div>
+      </div>
+    `;
+    chatArea.scrollTop = chatArea.scrollHeight;
+  }, 700);
+}
+
+// QUIZ
+function shuffle(arr) { return [...arr].sort(()=>Math.random()-0.5); }
+
+function initQuiz() {
+  quizPhrases = shuffle(phrases);
+  quizIndex = 0; quizScore = 0; quizTotal = 0; quizAnswered = false;
+  updateStats();
+  showQuestion();
+}
+
+function updateStats() {
+  document.getElementById("qScore").textContent = quizScore;
+  document.getElementById("qTotal").textContent = quizTotal;
+  document.getElementById("qPct").textContent = quizTotal > 0 ? Math.round(quizScore/quizTotal*100)+"%" : "—";
+  const pct = Math.min(quizIndex/quizPhrases.length*100,100);
+  document.getElementById("progressFill").style.width = pct+"%";
+  document.getElementById("progressLabel").textContent = `問題 ${quizIndex} / ${quizPhrases.length}`;
+  document.getElementById("progressPct").textContent = Math.round(pct)+"%";
+}
+
+function showQuestion() {
+  const content = document.getElementById("quizContent");
+  if (quizIndex >= quizPhrases.length) {
+    const pct = Math.round(quizScore/quizTotal*100);
+    const msg = pct>=80?"素晴らしい！本番でも自信を持って話せます！":pct>=60?"なかなか良い成績です。もう一度挑戦してさらに伸ばしましょう！":"もう一度チャレンジして、フレーズを定着させましょう！";
+    content.innerHTML = `
+      <div class="quiz-card complete-card">
+        <div style="font-size:48px">🎉</div>
+        <div class="complete-score">${quizScore} / ${quizTotal}</div>
+        <div class="complete-pct">正答率 ${pct}%</div>
+        <div class="complete-msg">${msg}</div>
+        <button class="retry-btn" onclick="initQuiz()">もう一度チャレンジする</button>
+      </div>
+    `;
+    return;
+  }
+  const p = quizPhrases[quizIndex];
+  const wrong = shuffle(phrases.filter(x=>x.id!==p.id)).slice(0,3);
+  const opts = shuffle([p,...wrong]);
+  quizAnswered = false;
+  content.innerHTML = `
+    <div class="quiz-card">
+      <div style="font-size:12px;color:var(--ink-muted);margin-bottom:0.75rem;letter-spacing:0.05em">問題 ${quizIndex+1} — ${catLabels[p.cat]}</div>
+      <div class="quiz-q">「${p.jp}」</div>
+      <div class="quiz-opts">
+        ${opts.map(o=>`<button class="quiz-opt" onclick="checkAnswer(this,${o.id===p.id},${p.id})">${o.en}</button>`).join("")}
+      </div>
+      <div id="quizFeedback"></div>
+    </div>
+  `;
+}
+
+function checkAnswer(btn, correct, correctId) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  quizTotal++;
+  quizIndex++;
+  const correctPhrase = phrases.find(p=>p.id===correctId);
+  if (correct) {
+    btn.classList.add("correct");
+    quizScore++;
+    document.getElementById("quizFeedback").innerHTML = `<div class="quiz-result correct">✓ 正解！<br><small><em>${correctPhrase.ex}</em></small></div><button class="next-btn" onclick="nextQ()">次の問題 →</button>`;
+  } else {
+    btn.classList.add("wrong");
+    document.querySelectorAll(".quiz-opt").forEach(b=>{ if(b.textContent===correctPhrase.en) b.classList.add("correct"); });
+    document.getElementById("quizFeedback").innerHTML = `<div class="quiz-result wrong">✗ 不正解。正解は「<strong>${correctPhrase.en}</strong>」です。</div><button class="next-btn" onclick="nextQ()">次の問題 →</button>`;
+  }
+  document.querySelectorAll(".quiz-opt").forEach(b=>b.disabled=true);
+  updateStats();
+}
+
+function nextQ() { showQuestion(); }
+
+// Init
+renderPhrases();
+</script>
+</body>
+</html>
