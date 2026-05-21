@@ -1,6 +1,740 @@
 <!DOCTYPE html>
 <html lang="ja">
+<head><!DOCTYPE html>
+<html lang="ja">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SakeAni JAPAN | English Master — JapanFest Atlanta 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1410;--ink-soft:#4a3f35;--ink-muted:#8a7a6e;
+  --paper:#faf6f0;--paper-warm:#f3ede3;--paper-card:#fff9f2;
+  --red:#8B2020;--red-soft:#c45050;--red-bg:#fdf0f0;
+  --gold:#b8860b;--gold-soft:#e8d090;--gold-bg:#fdf9ee;
+  --teal:#2a6b6b;--teal-bg:#edf6f6;
+  --purple:#5a3a8a;--purple-bg:#f3eefe;
+  --border:rgba(26,20,16,.12);--border-strong:rgba(26,20,16,.22);
+  --r:10px;--r-lg:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh;line-height:1.7;}
+
+/* HEADER */
+.hdr{background:var(--ink);color:var(--paper);padding:1.75rem 1.5rem 0;position:relative;overflow:hidden;}
+.hdr::before{content:'醸';position:absolute;right:-10px;top:-20px;font-family:'Shippori Mincho',serif;font-size:180px;color:rgba(255,255,255,.04);pointer-events:none;}
+.hdr-inner{max-width:960px;margin:0 auto;}
+.hdr-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:1.25rem;}
+.brand{font-family:'Shippori Mincho',serif;font-size:10px;letter-spacing:.18em;color:rgba(250,246,240,.4);margin-bottom:6px;text-transform:uppercase;}
+.hdr h1{font-family:'Shippori Mincho',serif;font-size:clamp(20px,4vw,30px);font-weight:700;line-height:1.2;}
+.hdr h1 span{color:#d4826a;}
+.hdr-sub{font-size:12px;color:rgba(250,246,240,.45);margin-top:4px;font-weight:300;}
+.badge{background:var(--red);color:#fff;font-size:10px;font-weight:500;padding:3px 10px;border-radius:999px;letter-spacing:.05em;white-space:nowrap;align-self:flex-start;}
+
+/* LEVEL SELECTOR */
+.level-bar{display:flex;gap:0;max-width:960px;margin:0 auto;}
+.lv-btn{flex:1;padding:11px 8px;font-size:12px;font-weight:400;color:rgba(250,246,240,.4);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;letter-spacing:.02em;white-space:nowrap;}
+.lv-btn:hover{color:rgba(250,246,240,.7);}
+.lv-btn.active{color:var(--paper);border-bottom-color:#d4826a;font-weight:500;}
+.lv-badge{font-size:9px;padding:1px 5px;border-radius:999px;margin-left:5px;vertical-align:middle;}
+.lv1 .lv-badge{background:#7B68EE22;color:#7B68EE;}
+.lv2 .lv-badge{background:#2E8B5722;color:#2E8B57;}
+.lv3 .lv-badge{background:#b8860b22;color:#b8860b;}
+
+/* TABS */
+.tabs-wrap{background:var(--ink);border-top:1px solid rgba(255,255,255,.06);}
+.tabs{display:flex;max-width:960px;margin:0 auto;padding:0 1.5rem;}
+.tab-btn{padding:12px 18px;font-size:12px;color:rgba(250,246,240,.4);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;white-space:nowrap;}
+.tab-btn:hover{color:rgba(250,246,240,.7);}
+.tab-btn.active{color:var(--paper);border-bottom-color:#d4826a;font-weight:500;}
+
+/* MAIN */
+.main{max-width:960px;margin:0 auto;padding:1.5rem;}
+.section{display:none;}
+.section.active{display:block;}
+
+/* PHRASE LIST */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:1.25rem;}
+.search-wrap{position:relative;flex:1;min-width:160px;max-width:240px;}
+.search-wrap svg{position:absolute;left:9px;top:50%;transform:translateY(-50%);width:13px;height:13px;stroke:var(--ink-muted);}
+.search-input{width:100%;padding:7px 11px 7px 29px;border:1px solid var(--border-strong);border-radius:var(--r);background:var(--paper-card);font-size:12px;color:var(--ink);font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s;}
+.search-input:focus{border-color:var(--red-soft);}
+.filter-btn{padding:5px 12px;border-radius:999px;border:1px solid var(--border-strong);background:transparent;cursor:pointer;font-size:11px;font-family:'DM Sans',sans-serif;color:var(--ink-soft);transition:all .15s;white-space:nowrap;}
+.filter-btn:hover{background:var(--paper-warm);}
+.filter-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+
+.phrase-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:11px;}
+.phrase-card{background:var(--paper-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:1rem 1.125rem;position:relative;transition:all .15s;}
+.phrase-card:hover{border-color:var(--border-strong);transform:translateY(-1px);}
+.phrase-card.selected{border-color:var(--red);border-width:1.5px;background:var(--red-bg);}
+.phrase-num{font-size:10px;color:var(--ink-muted);margin-bottom:3px;}
+.phrase-cat{font-size:9px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:999px;display:inline-block;margin-bottom:7px;}
+.cat-挨拶,.cat-greeting{background:#eef6fd;color:#1a5fa8;}
+.cat-商品説明,.cat-product{background:var(--gold-bg);color:var(--gold);}
+.cat-ビジネス,.cat-business{background:var(--teal-bg);color:var(--teal);}
+.cat-イベント,.cat-event{background:var(--purple-bg);color:var(--purple);}
+.cat-クロージング,.cat-closing{background:var(--red-bg);color:var(--red);}
+.cat-文化・ビジネス説明{background:var(--teal-bg);color:var(--teal);}
+.cat-深層文化・スピーキング{background:var(--gold-bg);color:var(--gold);}
+.phrase-en{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px;line-height:1.45;}
+.phrase-jp{font-size:12px;color:var(--ink-soft);margin-bottom:8px;line-height:1.5;}
+.phrase-ex{font-size:11px;color:var(--ink-muted);font-style:italic;border-top:1px solid var(--border);padding-top:7px;line-height:1.5;}
+/* L2/L3 cards */
+.phrase-card.l2 .phrase-en,.phrase-card.l3 .phrase-en{font-size:13px;}
+.phrase-card.l3{border-left:3px solid var(--gold);}
+
+/* SPEAK BUTTON */
+.speak-btn{position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:50%;border:1px solid var(--border-strong);background:var(--paper-warm);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0;}
+.speak-btn:hover{background:var(--ink);border-color:var(--ink);}
+.speak-btn:hover svg{stroke:var(--paper);}
+.speak-btn svg{width:13px;height:13px;stroke:var(--ink-soft);fill:none;transition:stroke .15s;}
+.speak-btn.playing{background:var(--red);border-color:var(--red);}
+.speak-btn.playing svg{stroke:white;}
+
+/* SHADOWING */
+.shadow-section{margin-top:1.5rem;}
+.shadow-card{background:var(--paper-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.25rem;margin-bottom:1rem;}
+.shadow-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem;flex-wrap:wrap;gap:.5rem;}
+.shadow-title{font-size:13px;font-weight:500;color:var(--ink);}
+.shadow-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.ctrl-label{font-size:11px;color:var(--ink-muted);}
+.speed-btn{padding:3px 10px;border-radius:999px;border:1px solid var(--border-strong);background:transparent;cursor:pointer;font-size:11px;font-family:'DM Sans',sans-serif;color:var(--ink-soft);transition:all .15s;}
+.speed-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.big-play{width:44px;height:44px;border-radius:50%;border:none;background:var(--ink);color:var(--paper);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .15s;flex-shrink:0;}
+.big-play:hover{opacity:.82;}
+.big-play svg{width:18px;height:18px;fill:white;}
+.shadow-text{font-size:15px;font-weight:500;color:var(--ink);line-height:1.7;margin:1rem 0 .5rem;padding:1rem;background:var(--paper-warm);border-radius:var(--r);cursor:pointer;}
+.shadow-text.l3-text{font-size:13px;line-height:1.85;}
+.word{display:inline;transition:background .15s,color .15s;}
+.word.highlight{background:var(--gold-soft);color:var(--ink);border-radius:3px;padding:0 2px;}
+.shadow-jp{font-size:12px;color:var(--ink-muted);padding:.5rem 1rem;font-style:italic;}
+.phrase-nav{display:flex;gap:8px;align-items:center;margin-top:.75rem;}
+.nav-btn{padding:6px 14px;border-radius:var(--r);border:1px solid var(--border-strong);background:transparent;cursor:pointer;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--ink-soft);transition:all .15s;}
+.nav-btn:hover{background:var(--paper-warm);}
+.nav-counter{font-size:12px;color:var(--ink-muted);flex:1;text-align:center;}
+
+/* AI DIALOGUE */
+.ai-section{}
+.ai-scenario-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem;}
+.sc-btn{padding:7px 14px;border-radius:var(--r);border:1px solid var(--border-strong);background:var(--paper-card);cursor:pointer;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--ink-soft);transition:all .15s;}
+.sc-btn:hover{background:var(--paper-warm);}
+.sc-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.scenario-info{background:var(--paper-card);border:1px solid var(--border);border-left:3px solid var(--red);border-radius:var(--r);padding:.875rem 1.125rem;margin-bottom:.875rem;}
+.scenario-info h3{font-size:14px;font-weight:500;margin-bottom:3px;}
+.scenario-info p{font-size:12px;color:var(--ink-soft);}
+.ai-meta{display:flex;gap:8px;align-items:center;margin-bottom:.875rem;flex-wrap:wrap;}
+.ai-level-tag{font-size:11px;padding:3px 10px;border-radius:999px;border:1px solid var(--border-strong);color:var(--ink-soft);background:var(--paper-warm);}
+.ai-mode-tag{font-size:11px;padding:3px 10px;border-radius:999px;background:var(--teal-bg);color:var(--teal);border:1px solid transparent;}
+.hint-box{background:var(--gold-bg);border:1px solid var(--gold-soft);border-radius:var(--r);padding:.75rem 1rem;margin-bottom:.875rem;}
+.hint-label{font-size:11px;font-weight:500;color:var(--gold);margin-bottom:6px;}
+.hint-pills{display:flex;gap:5px;flex-wrap:wrap;}
+.hint-pill{background:white;border:1px solid var(--gold-soft);padding:2px 9px;border-radius:999px;cursor:pointer;font-size:11px;color:var(--ink-soft);transition:background .1s;font-family:'DM Sans',sans-serif;}
+.hint-pill:hover{background:var(--paper-warm);}
+.chat-area{background:var(--paper-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:1rem;min-height:240px;max-height:400px;overflow-y:auto;margin-bottom:.875rem;scroll-behavior:smooth;}
+.msg{margin-bottom:14px;overflow:hidden;}
+.msg-role{font-size:9px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px;}
+.msg-role.partner{color:var(--teal);}
+.msg-role.user{color:var(--red);text-align:right;}
+.msg-bubble{font-size:13px;line-height:1.6;padding:8px 12px;border-radius:var(--r);display:inline-block;max-width:82%;}
+.msg-bubble.partner{background:var(--teal-bg);border:1px solid rgba(42,107,107,.15);border-radius:2px var(--r) var(--r) var(--r);}
+.msg-bubble.user{background:var(--red-bg);border:1px solid rgba(139,32,32,.12);border-radius:var(--r) 2px var(--r) var(--r);float:right;}
+.msg.user{text-align:right;}
+.msg-jp{font-size:10px;color:var(--ink-muted);margin-top:2px;}
+.msg.user .msg-jp{text-align:right;}
+.msg-feedback{font-size:11px;margin-top:4px;padding:4px 8px;border-radius:5px;display:inline-block;}
+.msg-feedback.good{background:#e8f7ef;color:#1a6b3a;}
+.msg-feedback.improve{background:var(--gold-bg);color:var(--gold);}
+.ai-thinking{display:flex;align-items:center;gap:6px;padding:8px 12px;background:var(--teal-bg);border-radius:var(--r);font-size:12px;color:var(--teal);width:fit-content;}
+.dot-anim span{display:inline-block;width:5px;height:5px;background:var(--teal);border-radius:50%;animation:bounce .9s infinite;}
+.dot-anim span:nth-child(2){animation-delay:.2s;}
+.dot-anim span:nth-child(3){animation-delay:.4s;}
+@keyframes bounce{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-5px);}}
+.input-row{display:flex;gap:8px;}
+.chat-input{flex:1;padding:9px 13px;border:1px solid var(--border-strong);border-radius:var(--r);background:var(--paper-card);font-size:13px;font-family:'DM Sans',sans-serif;color:var(--ink);outline:none;transition:border-color .2s;}
+.chat-input:focus{border-color:var(--red-soft);}
+.send-btn{padding:9px 18px;border-radius:var(--r);border:1px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;font-size:13px;font-family:'DM Sans',sans-serif;font-weight:500;transition:opacity .15s;white-space:nowrap;}
+.send-btn:hover{opacity:.82;}
+.send-btn:disabled{opacity:.4;cursor:default;}
+.speak-msg-btn{width:26px;height:26px;border-radius:50%;border:1px solid var(--border);background:transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;margin-left:5px;vertical-align:middle;}
+.speak-msg-btn svg{width:11px;height:11px;stroke:var(--ink-muted);fill:none;}
+.speak-msg-btn:hover{background:var(--paper-warm);}
+
+/* FOOTER */
+.footer{text-align:center;padding:2rem 1.5rem;font-size:10px;color:var(--ink-muted);border-top:1px solid var(--border);margin-top:3rem;letter-spacing:.05em;}
+
+/* SCROLLBAR */
+.chat-area::-webkit-scrollbar{width:3px;}
+.chat-area::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:2px;}
+code{background:var(--paper-warm);padding:1px 4px;border-radius:3px;font-size:11px;}
+.no-results{text-align:center;padding:2.5rem;color:var(--ink-muted);font-size:13px;grid-column:1/-1;}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+<div class="hdr-inner">
+  <div class="hdr-top">
+    <div>
+      <div class="brand">SakeAni JAPAN × JapanFest Atlanta 2026</div>
+      <h1>English Phrase<br><span>Master</span></h1>
+      <div class="hdr-sub">3レベル・150フレーズ｜シャドウイング＋AI対話</div>
+    </div>
+    <span class="badge">Atlanta 2026</span>
+  </div>
+  <div class="level-bar">
+    <button class="lv-btn lv1 active" onclick="setLevel(1,this)">Level 1 <span class="lv-badge">初級</span></button>
+    <button class="lv-btn lv2" onclick="setLevel(2,this)">Level 2 <span class="lv-badge">中級</span></button>
+    <button class="lv-btn lv3" onclick="setLevel(3,this)">Level 3 <span class="lv-badge">上級</span></button>
+  </div>
+</div>
+</header>
+
+<div class="tabs-wrap">
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('phrases',this)">📋 フレーズ一覧</button>
+  <button class="tab-btn" onclick="showTab('shadow',this)">🎙 シャドウイング</button>
+  <button class="tab-btn" onclick="showTab('ai',this)">🤖 AI対話</button>
+</div>
+</div>
+
+<main class="main">
+
+<!-- PHRASES -->
+<div id="phrases" class="section active">
+  <div class="filter-bar">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input class="search-input" id="searchInput" type="text" placeholder="キーワード検索..." oninput="renderPhrases()">
+    </div>
+    <button class="filter-btn active" onclick="setFilter('all',this)">すべて</button>
+    <span id="catFilters"></span>
+  </div>
+  <div class="phrase-grid" id="phraseGrid"></div>
+</div>
+
+<!-- SHADOWING -->
+<div id="shadow" class="section">
+  <div class="shadow-card">
+    <div class="shadow-header">
+      <div class="shadow-title" id="shadowTitle">シャドウイング練習</div>
+      <div class="shadow-controls">
+        <span class="ctrl-label">速度:</span>
+        <button class="speed-btn" onclick="setSpeed(0.6,this)">0.6×</button>
+        <button class="speed-btn active" onclick="setSpeed(0.85,this)">0.85×</button>
+        <button class="speed-btn" onclick="setSpeed(1,this)">1×</button>
+        <button class="speed-btn" onclick="setSpeed(1.2,this)">1.2×</button>
+        <button class="big-play" onclick="speakCurrent()" id="playBtn" title="再生">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="shadow-text" id="shadowText" onclick="speakCurrent()">フレーズを選択してください</div>
+    <div class="shadow-jp" id="shadowJp"></div>
+    <div class="phrase-nav">
+      <button class="nav-btn" onclick="shadowNav(-1)">← 前へ</button>
+      <span class="nav-counter" id="shadowCounter">— / —</span>
+      <button class="nav-btn" onclick="shadowNav(1)">次へ →</button>
+    </div>
+  </div>
+  <div id="shadowList" style="margin-top:1rem;"></div>
+</div>
+
+<!-- AI DIALOGUE -->
+<div id="ai" class="section">
+  <div class="ai-scenario-tabs" id="scenarioTabs"></div>
+  <div class="scenario-info" id="scenarioInfo"></div>
+  <div class="ai-meta">
+    <span class="ai-level-tag" id="aiLevelTag">Level 1 使用中</span>
+    <span class="ai-mode-tag">🤖 Claude AI powered</span>
+  </div>
+  <div class="hint-box" id="hintBox"></div>
+  <div class="chat-area" id="chatArea"></div>
+  <div class="input-row">
+    <input class="chat-input" id="chatInput" type="text" placeholder="英語でメッセージを入力..." onkeydown="if(event.key==='Enter'&&!event.shiftKey)sendChat()">
+    <button class="send-btn" onclick="sendChat()" id="sendBtn">送信 →</button>
+  </div>
+</div>
+
+</main>
+
+<footer class="footer">
+  SAKEANIJAPAN株式会社 × KOKUSHU — 國酒聲醸 KOKUSHU SEIJO<br>
+  JapanFest Atlanta 2026 出展チーム向け学習ツール
+</footer>
+
+<script>
+// ===== DATA =====
+const L1=[
+  {en:"Nice to meet you!",jp:"はじめまして！",ex:"Nice to meet you! I'm Kazu from SakeAni Japan.",cat:"挨拶"},
+  {en:"Thank you for stopping by.",jp:"お立ち寄りいただきありがとうございます。",ex:"Thank you for stopping by our booth!",cat:"挨拶"},
+  {en:"Welcome to our booth!",jp:"ブースへようこそ！",ex:"Welcome to our booth — we're glad you're here.",cat:"挨拶"},
+  {en:"Please feel free to try a sample.",jp:"ぜひサンプルをお試しください。",ex:"Please feel free to try a sample of our sake.",cat:"挨拶"},
+  {en:"Are you familiar with Japanese sake?",jp:"日本酒はご存知ですか？",ex:"Are you familiar with Japanese sake? Let me introduce you.",cat:"挨拶"},
+  {en:"This is a limited edition.",jp:"これは限定版です。",ex:"This is a limited edition sake crafted in Kyoto.",cat:"商品説明"},
+  {en:"It has a smooth, rich flavor.",jp:"なめらかで濃厚な風味です。",ex:"It has a smooth, rich flavor with floral notes.",cat:"商品説明"},
+  {en:"This sake pairs well with seafood.",jp:"このお酒はシーフードとよく合います。",ex:"This sake pairs well with seafood and light dishes.",cat:"商品説明"},
+  {en:"It's brewed in a centuries-old tradition.",jp:"何世紀もの伝統で醸造されています。",ex:"It's brewed in a centuries-old tradition in rural Japan.",cat:"商品説明"},
+  {en:"The voice actor narrates the story behind each bottle.",jp:"声優がボトル裏のストーリーをナレーションします。",ex:"The voice actor narrates the story — it's a unique experience.",cat:"商品説明"},
+  {en:"We offer a subscription service.",jp:"サブスクリプションサービスを提供しています。",ex:"We offer a subscription service with four seasonal deliveries.",cat:"商品説明"},
+  {en:"You'll receive four seasonal shipments per year.",jp:"年に4回季節の配送があります。",ex:"You'll receive four seasonal shipments per year — spring to winter.",cat:"商品説明"},
+  {en:"Each box includes exclusive audio content.",jp:"各ボックスには限定音声コンテンツが含まれます。",ex:"Each box includes exclusive audio content narrated in Japanese.",cat:"商品説明"},
+  {en:"We bridge tradition and entertainment.",jp:"伝統とエンターテインメントをつなぎます。",ex:"We bridge tradition and entertainment through sake and voice acting.",cat:"ビジネス"},
+  {en:"Our goal is to globalize Japanese culture.",jp:"目標は日本文化のグローバル化です。",ex:"Our goal is to globalize Japanese culture through storytelling.",cat:"ビジネス"},
+  {en:"We're looking for potential partners.",jp:"潜在的なパートナーを探しています。",ex:"We're looking for potential partners in the US market.",cat:"ビジネス"},
+  {en:"Could I have your business card?",jp:"名刺をいただけますか？",ex:"Could I have your business card? I'd love to follow up.",cat:"ビジネス"},
+  {en:"Shall we schedule a meeting?",jp:"ミーティングを設定しましょうか？",ex:"Shall we schedule a meeting to discuss this further?",cat:"ビジネス"},
+  {en:"We'd love to collaborate with you.",jp:"ぜひコラボレーションしたいです。",ex:"We'd love to collaborate with you on this project.",cat:"ビジネス"},
+  {en:"This is a unique investment opportunity.",jp:"これはユニークな投資機会です。",ex:"This is a unique investment opportunity in the IP space.",cat:"ビジネス"},
+  {en:"Our revenue model is multi-layered.",jp:"収益モデルは多層構造です。",ex:"Our revenue model is multi-layered — subscriptions, events, and licensing.",cat:"ビジネス"},
+  {en:"We've partnered with top voice actors.",jp:"トップ声優とパートナーシップを結んでいます。",ex:"We've partnered with top voice actors in Japan.",cat:"ビジネス"},
+  {en:"The anime industry is booming globally.",jp:"アニメ業界は世界的に急成長しています。",ex:"The anime industry is booming globally — over $30B market.",cat:"ビジネス"},
+  {en:"Japan's sake breweries are family-run.",jp:"日本の酒蔵は家族経営です。",ex:"Japan's sake breweries are family-run, with generations of expertise.",cat:"ビジネス"},
+  {en:"We're exhibiting for the first time.",jp:"初めて出展しています。",ex:"We're exhibiting for the first time at JapanFest Atlanta.",cat:"イベント"},
+  {en:"This event attracts over 22,000 visitors.",jp:"このイベントは22,000人以上の来場者を集めます。",ex:"This event attracts over 22,000 visitors each year.",cat:"イベント"},
+  {en:"Please scan this QR code to subscribe.",jp:"このQRコードをスキャンしてご登録ください。",ex:"Please scan this QR code to subscribe and get 10% off.",cat:"イベント"},
+  {en:"We have a live demonstration every hour.",jp:"毎時間ライブデモがあります。",ex:"We have a live demonstration every hour — please join us!",cat:"イベント"},
+  {en:"Take a flyer for more information.",jp:"詳細はチラシをどうぞ。",ex:"Take a flyer for more information about our subscription.",cat:"イベント"},
+  {en:"This is our flagship product.",jp:"これは当社の主力製品です。",ex:"This is our flagship product — the seasonal sake box.",cat:"商品説明"},
+  {en:"The sound of the brewery is recorded live.",jp:"酒蔵の音はライブで録音されます。",ex:"The sound of the brewery — fermenting, flowing — is recorded live.",cat:"商品説明"},
+  {en:"It's an immersive experience.",jp:"没入型体験です。",ex:"It's an immersive experience combining sound, story, and sake.",cat:"商品説明"},
+  {en:"We ship internationally.",jp:"国際配送しています。",ex:"We ship internationally — including to the United States.",cat:"商品説明"},
+  {en:"This is a one-of-a-kind concept.",jp:"他に類を見ないコンセプトです。",ex:"This is a one-of-a-kind concept — nowhere else in the world.",cat:"ビジネス"},
+  {en:"We combine IP with traditional craft.",jp:"IPと伝統工芸を組み合わせます。",ex:"We combine IP with traditional craft for a global audience.",cat:"ビジネス"},
+  {en:"Our long-term vision includes animation.",jp:"長期ビジョンにはアニメ化が含まれます。",ex:"Our long-term vision includes animation based on these stories.",cat:"ビジネス"},
+  {en:"Would you like a tasting?",jp:"試飲はいかがですか？",ex:"Would you like a tasting? We have three varieties today.",cat:"イベント"},
+  {en:"Please enjoy the aroma first.",jp:"まず香りをお楽しみください。",ex:"Please enjoy the aroma first — it's quite floral.",cat:"イベント"},
+  {en:"This is brewed in Niigata Prefecture.",jp:"これは新潟県で醸造されています。",ex:"This is brewed in Niigata Prefecture, famous for clean water.",cat:"商品説明"},
+  {en:"Let me share our website with you.",jp:"ウェブサイトをご紹介します。",ex:"Let me share our website — all details are there.",cat:"クロージング"},
+  {en:"We'd appreciate your feedback.",jp:"ご意見をいただけると幸いです。",ex:"We'd appreciate your feedback on today's tasting.",cat:"クロージング"},
+  {en:"Please stay in touch.",jp:"ぜひ連絡を取り合いましょう。",ex:"Please stay in touch — my email is on the card.",cat:"クロージング"},
+  {en:"It was a pleasure meeting you.",jp:"お会いできて光栄です。",ex:"It was a pleasure meeting you. Hope to see you again!",cat:"クロージング"},
+  {en:"I'll follow up with more details.",jp:"詳細を追ってご連絡します。",ex:"I'll follow up with more details about our partnership plan.",cat:"クロージング"},
+  {en:"Thank you for your interest!",jp:"ご興味をお持ちいただきありがとうございます！",ex:"Thank you for your interest! We're excited to connect.",cat:"クロージング"},
+  {en:"Please visit us again tomorrow.",jp:"明日もぜひお越しください。",ex:"Please visit us again tomorrow — we'll have new samples.",cat:"クロージング"},
+  {en:"Here's our early bird discount.",jp:"これは早期割引です。",ex:"Here's our early bird discount — 20% off first year.",cat:"クロージング"},
+  {en:"We look forward to working with you.",jp:"ご一緒できることを楽しみにしています。",ex:"We look forward to working with you on this exciting project.",cat:"クロージング"},
+  {en:"Our passion is to share Japanese culture.",jp:"私たちの情熱は日本文化を広めることです。",ex:"Our passion is to share Japanese culture with the world.",cat:"ビジネス"},
+  {en:"Feel the spirit of Japan in every sip.",jp:"一口ごとに日本の魂を感じてください。",ex:"Feel the spirit of Japan in every sip — kanpai!",cat:"商品説明"},
+];
+
+const L2=[
+  {en:"Japanese sake is deeply tied to the four seasons — each brew reflects the climate and harvest of its region.",jp:"日本酒は四季と深く結びついており、各酒はその地域の気候と収穫を反映しています。",cat:"文化・ビジネス説明"},
+  {en:"The concept of 'terroir' exists in sake brewing just as it does in French wine — the water, rice, and microbes of each place create a truly unique taste.",jp:"テロワールの概念は日本酒醸造にもフランスワインと同様に存在します。各地の水・米・微生物が唯一無二の味を生み出します。",cat:"文化・ビジネス説明"},
+  {en:"In Japan, the brewery — called a 'kura' — is considered a living space where invisible microbes transform rice into something extraordinary.",jp:"日本では、蔵と呼ばれる醸造所は、見えない微生物が米を非凡なものへと変容させる生きた空間と考えられています。",cat:"文化・ビジネス説明"},
+  {en:"Our voice actors don't just read scripts — they breathe life into the history and soul of each brewery.",jp:"声優たちは単に台本を読むのではなく、各酒蔵の歴史と魂に命を吹き込みます。",cat:"文化・ビジネス説明"},
+  {en:"Much like manga and anime, Japanese sake tells a story — one rooted in land, season, and the hands that craft it.",jp:"マンガやアニメと同様に、日本酒はストーリーを語ります。それは土地・季節・醸す手に根ざした物語です。",cat:"文化・ビジネス説明"},
+  {en:"The Japanese aesthetic of 'mononoaware' — a bittersweet appreciation of transience — is embedded in every seasonal sake we deliver.",jp:"「もののあわれ」という日本の美意識が、毎回の季節便に込められています。",cat:"文化・ビジネス説明"},
+  {en:"Anime fans around the world are drawn to Japanese culture not just for entertainment, but for its layered emotional depth.",jp:"世界中のアニメファンが日本文化に引きつけられるのは、エンターテインメントだけでなく、その層をなす感情的な深みのためです。",cat:"文化・ビジネス説明"},
+  {en:"Just as a manga character grows through hardship and transformation, each sake evolves through the patient process of fermentation.",jp:"マンガのキャラクターが試練と変容を通じて成長するように、各お酒は発酵という忍耐のプロセスを経て進化します。",cat:"文化・ビジネス説明"},
+  {en:"In Japan, food is not merely sustenance — it is a celebration of season, community, and craftsmanship.",jp:"日本では食は単なる栄養ではなく、季節・共同体・職人技の祝祭です。",cat:"文化・ビジネス説明"},
+  {en:"Our subscription model is inspired by Japan's gift-giving culture — each seasonal delivery is a carefully curated celebration.",jp:"私たちのサブスクモデルは日本の贈り物文化からインスピレーションを受けています。",cat:"文化・ビジネス説明"},
+  {en:"The voice acting tradition in Japan is not just performance — it is a form of storytelling that carries emotional weight unlike any other.",jp:"日本の声優文化は単なるパフォーマンスではなく、他に類を見ない感情的な重みを持つストーリーテリングの形です。",cat:"文化・ビジネス説明"},
+  {en:"Sake brewing follows the same philosophy as Japanese martial arts — mastery comes through years of dedicated practice and deep respect for tradition.",jp:"日本酒醸造は日本武道と同じ哲学に従います。習得は長年の献身的な修練と伝統への深い敬意によって得られます。",cat:"文化・ビジネス説明"},
+  {en:"The idea of 'shokunin' — a craftsman devoted entirely to their art — lives in every kura master who dedicates their life to brewing.",jp:"「職人」という概念は、醸造に人生を捧げるすべての蔵元に生きています。",cat:"文化・ビジネス説明"},
+  {en:"Regional sake varieties reflect Japan's geographical diversity — from the soft waters of Kyoto to the mineral-rich springs of Niigata.",jp:"地域ごとの日本酒は日本の地理的多様性を反映しています。京都の軟水から新潟のミネラル豊かな湧き水まで。",cat:"文化・ビジネス説明"},
+  {en:"We see a strong parallel between the global rise of anime fandom and the growing international appreciation for Japanese sake.",jp:"アニメファンダムの世界的台頭と日本酒への国際的な評価の高まりに強い並行性を見出しています。",cat:"文化・ビジネス説明"},
+  {en:"Our audio content uses field recordings from inside real breweries — the sound of fermenting rice, running water, and seasons changing.",jp:"私たちの音声コンテンツは実際の酒蔵内でのフィールドレコーディングを使用しています。",cat:"文化・ビジネス説明"},
+  {en:"To truly understand Japanese sake, you need to understand 'ma' — the meaningful silence and space between notes that gives the experience its depth.",jp:"日本酒を真に理解するには、「間」を理解する必要があります。体験に深みを与える意味ある沈黙です。",cat:"文化・ビジネス説明"},
+  {en:"The world's most passionate anime fans are not just consumers — they are co-creators who build entire communities around the stories they love.",jp:"世界で最も情熱的なアニメファンは単なる消費者ではなく、愛するストーリーを中心にコミュニティを構築する共同創造者です。",cat:"文化・ビジネス説明"},
+  {en:"SakeAni Japan brings together two of Japan's most powerful cultural exports — sake and voice acting — into a single immersive subscription experience.",jp:"サケアニジャパンは日本酒と声優を一つの没入型サブスク体験へと融合させます。",cat:"文化・ビジネス説明"},
+  {en:"The Japanese concept of 'ichigo ichie' — treasuring each moment as if it will never come again — is exactly the spirit we infuse into each seasonal box.",jp:"「一期一会」という日本の概念が各季節便に込められています。",cat:"文化・ビジネス説明"},
+  {en:"Unlike mass-produced spirits, each bottle in our collection comes from a small-batch kura with a story that stretches back generations.",jp:"量産品とは異なり、私たちのコレクションの各ボトルは何世代にもわたる物語を持つ小規模な蔵から生まれています。",cat:"文化・ビジネス説明"},
+  {en:"The emotional resonance of anime — the feeling of being understood, of belonging to something larger — is what we want every subscriber to feel.",jp:"アニメの感情的な共鳴、つまり理解された感覚・より大きなものへの帰属感を、すべての会員に感じてほしいのです。",cat:"文化・ビジネス説明"},
+  {en:"Our platform creates a bridge between Japan's rural brewing communities and global fans who are hungry for authentic cultural connection.",jp:"私たちのプラットフォームは日本の地方醸造コミュニティと本物の文化的つながりを求める世界のファンとの橋渡しをします。",cat:"文化・ビジネス説明"},
+  {en:"Each sake in our collection has been selected not only for its taste but for the richness of the human story behind its creation.",jp:"私たちのコレクションの各お酒は、その味だけでなく、誕生の背景にある人間のストーリーの豊かさでも選ばれています。",cat:"文化・ビジネス説明"},
+  {en:"The joy of discovery is central to the Japanese gift culture — our seasonal boxes recreate that feeling of unwrapping something precious and unexpected.",jp:"発見の喜びは日本の贈り物文化の中心にあります。私たちの季節便はその感覚を再現します。",cat:"文化・ビジネス説明"},
+  {en:"Sake is one of the world's oldest fermented beverages, yet it remains remarkably relevant — a testament to the enduring power of Japanese craft.",jp:"日本酒は世界最古の発酵飲料の一つですが、驚くほど現代に息づいています。",cat:"文化・ビジネス説明"},
+  {en:"We want subscribers to feel what it's like to sit in a quiet Japanese farmhouse in winter, snow falling outside, sake warming in your hands.",jp:"私たちは会員に、冬の静かな日本の農家で外に雪が降る中、手の中でお酒が温まる感覚を体験してほしいのです。",cat:"文化・ビジネス説明"},
+  {en:"The rise of 'sake bars' in cities like New York, London, and Atlanta shows that global audiences are ready for a deeper engagement with Japanese drink culture.",jp:"ニューヨーク・ロンドン・アトランタでの「酒バー」の台頭は、日本の飲み文化との深い関わりへの準備ができていることを示しています。",cat:"文化・ビジネス説明"},
+  {en:"Our voice actors were chosen not just for their talent but for their deep connection to the stories and landscapes of the regions they represent.",jp:"私たちの声優は才能だけでなく、彼らが代表する地域のストーリーと風景との深いつながりで選ばれました。",cat:"文化・ビジネス説明"},
+  {en:"At JapanFest Atlanta, we're not just selling sake — we're opening a window into a living, breathing culture that has shaped anime, manga, and culinary art.",jp:"JapanFest Atlantaで私たちは単にお酒を売るのではなく、アニメ・マンガ・料理芸術を形作ってきた生きた文化への窓を開いています。",cat:"文化・ビジネス説明"},
+  {en:"The philosophy of 'wabi-sabi' — finding beauty in imperfection and impermanence — is something every sake enthusiast instinctively understands.",jp:"「侘び寂び」の哲学、つまり不完全さと無常の中に美を見出すことは、すべての日本酒愛好家が本能的に理解するものです。",cat:"文化・ビジネス説明"},
+  {en:"Anime's global success is not accidental — it reflects centuries of Japanese storytelling tradition, aesthetic sensibility, and emotional honesty.",jp:"アニメのグローバルな成功は偶然ではありません。何世紀もの日本のストーリーテリングの伝統・美的感受性・感情的な誠実さを反映しています。",cat:"文化・ビジネス説明"},
+  {en:"Our subscription is designed around Japan's gift-giving seasons — spring, summer, autumn, and winter each carry their own emotional texture.",jp:"私たちのサブスクは日本の贈り物の季節を中心に設計されています。春・夏・秋・冬それぞれに固有の感情的な質感があります。",cat:"文化・ビジネス説明"},
+  {en:"The fermentation process in sake brewing is a metaphor for patience and trust — you surrender control to invisible forces and wait for transformation.",jp:"日本酒醸造の発酵プロセスは忍耐と信頼のメタファーです。見えない力にコントロールを委ね、変容を待つのです。",cat:"文化・ビジネス説明"},
+  {en:"We believe the next frontier for IP expansion is not just anime or gaming — it's the fusion of sensory experiences like taste, sound, and story.",jp:"IPエクスパンションの次のフロンティアはアニメやゲームだけでなく、味・音・物語のような感覚的体験の融合だと信じています。",cat:"文化・ビジネス説明"},
+  {en:"JapanFest Atlanta is proof that Japanese culture has taken root in the American South — and we're here to deepen those roots.",jp:"JapanFest Atlantaは日本文化がアメリカ南部に根付いたことの証明です。私たちはその根をさらに深めるためにここにいます。",cat:"文化・ビジネス説明"},
+  {en:"The stories behind Japan's regional breweries are stories of resilience — of families who chose craft over convenience, generation after generation.",jp:"日本の地方酒蔵の背後にある物語は、世代を超えて利便性より職人技を選んだ家族たちのレジリエンスの物語です。",cat:"文化・ビジネス説明"},
+  {en:"Our audio content is designed to be listened to while drinking — creating a synchronized experience of sound, scent, and flavor.",jp:"私たちの音声コンテンツはお酒を飲みながら聴くよう設計されています。音・香り・味の同期した体験を作り出します。",cat:"文化・ビジネス説明"},
+  {en:"What makes Japanese food culture so compelling to global audiences is its insistence on honoring the natural ingredient — letting it speak for itself.",jp:"日本の食文化が世界の人々を魅了するのは、自然の食材を敬い、それ自体を語らせるというこだわりにあります。",cat:"文化・ビジネス説明"},
+  {en:"We see KokushuSeijo not just as a product, but as a cultural movement — one that gives Japan's hidden brewing villages a voice on the world stage.",jp:"私たちは國酒聲醸を単なる製品ではなく、日本の隠れた醸造の村々に世界の舞台で声を与える文化的ムーブメントと捉えています。",cat:"文化・ビジネス説明"},
+  {en:"The 'shokunin spirit' — the relentless pursuit of perfection in craft — is something anime fans recognize immediately, because it lives in the characters they love.",jp:"「職人スピリット」は、アニメファンがすぐに認識します。なぜなら彼らが愛するキャラクターに生きているからです。",cat:"文化・ビジネス説明"},
+  {en:"In Japan, drinking is not just about the beverage — it is about 'nomunication,' a word that blends 'nomu' (to drink) and 'communication.'",jp:"日本では飲酒は単に飲み物についてではなく、「飲む」と「コミュニケーション」を合わせた「飲みュニケーション」についてです。",cat:"文化・ビジネス説明"},
+  {en:"The layered emotional world of Japanese anime mirrors the subtle complexity of sake itself.",jp:"日本アニメの層をなす感情的世界は、日本酒そのものの繊細な複雑さを映し出しています。",cat:"文化・ビジネス説明"},
+  {en:"Our partnership with regional breweries is built on the same principle as anime production — deep collaboration between creators who share a vision.",jp:"地方酒蔵とのパートナーシップはアニメ制作と同じ原則に基づいています。ビジョンを共有するクリエイター間の深いコラボレーションです。",cat:"文化・ビジネス説明"},
+  {en:"We believe that when someone opens one of our boxes, they should feel they've received a letter from Japan — personal, seasonal, and full of meaning.",jp:"私たちのボックスを開けた時、日本から個人的で季節感があり意味に満ちた手紙を受け取ったと感じてほしいと思っています。",cat:"文化・ビジネス説明"},
+  {en:"The regional identity of sake — Kyoto's elegance, Niigata's crispness, Hiroshima's sweetness — is as distinct as the local dialects of each area.",jp:"日本酒の地域的アイデンティティ、京都の優雅さ・新潟のキレ・広島の甘さは、各地域の方言と同様に個性的です。",cat:"文化・ビジネス説明"},
+  {en:"Every voice in our content library was chosen because they understand silence as much as sound — the pauses that let the listener's imagination fill the room.",jp:"私たちのコンテンツライブラリのすべての声は、音と同様に沈黙を理解しているため選ばれました。",cat:"文化・ビジネス説明"},
+  {en:"Sake culture and anime culture share a core value: the belief that a single, carefully crafted experience has the power to change how someone sees the world.",jp:"日本酒文化とアニメ文化は、丁寧に作り上げられた一つの体験が世界の見方を変える力を持つという信念を共有しています。",cat:"文化・ビジネス説明"},
+  {en:"We are building not just a business but an ecosystem — connecting breweries, voice artists, subscribers, and the land itself into a living, resonant network.",jp:"私たちはビジネスだけでなくエコシステムを構築しています。蔵・声優・会員・そして土地そのものを繋いだ共鳴するネットワークです。",cat:"文化・ビジネス説明"},
+  {en:"JapanFest Atlanta represents exactly the kind of community we exist to serve — people who feel a genuine, heartfelt connection to Japanese culture.",jp:"JapanFest Atlantaは私たちが存在する目的のコミュニティを体現しています。日本文化に本物の心からのつながりを感じる人々です。",cat:"文化・ビジネス説明"},
+];
+
+const L3=[
+  {en:"To understand SakeAni Japan's vision, you first need to understand the cultural DNA that connects sake, anime, and the Japanese sense of beauty. Japan's brewing culture was never just about alcohol — it emerged from the 'yui' tradition, a system of communal farming labor where rice cultivation brought villages together. Sake was brewed as an offering to the gods, poured at harvest festivals, and shared as a medium of connection. That communal spirit lives on in every kura today. When our voice actors narrate the story of a brewery, they are not simply providing entertainment — they are transmitting the collective memory of a community, through sound, across the ocean.",jp:"サケアニジャパンのビジョンを理解するには、日本酒・アニメ・日本の美意識を繋ぐ文化的DNAを理解する必要があります。日本の醸造文化は「結」の伝統から生まれました。日本酒は神への奉納物として醸造され、収穫祭に注がれ、つながりの媒介として共有されました。その共同体の精神は今日もすべての蔵に生き続けています。声優が酒蔵のストーリーをナレーションするとき、共同体の集合的記憶を音を通じて海を越えて伝えているのです。",cat:"深層文化・スピーキング"},
+  {en:"The philosophy behind our seasonal subscription is rooted in a concept that has shaped Japanese aesthetics for over a thousand years: 'mononoaware,' or the bittersweet awareness of impermanence. In Japan, the falling of cherry blossoms is not a tragedy — it is the very reason they are beautiful. A dish is not fully enjoyed unless it is eaten at the precise moment it is in season. A sake is not fully experienced unless it is tasted in the landscape and climate from which it was born. Our four-season delivery model is not a marketing strategy. It is a philosophical statement: that the most profound experiences in life are those that know their own ending.",jp:"私たちの季節便の哲学は千年以上にわたって日本の美学を形作ってきた「もののあわれ」に根ざしています。日本では桜の花が散ることは悲劇ではなく、それこそが美しさの理由です。旬のまさにその瞬間に食べられなければ料理は完全には楽しめません。私たちの四季配送モデルはマーケティング戦略ではなく哲学的な声明です。人生で最も深い体験とは自らの終わりを知るものだという。",cat:"深層文化・スピーキング"},
+  {en:"What drives the global passion for Japanese anime is something that scholars of aesthetics have tried to name for decades. It is not the animation quality alone, nor the complexity of the plots. It is the Japanese tradition of 'ma' — the art of meaningful silence. In anime, what a character does not say carries more emotional weight than what they do. A glance, a pause, a hand that almost touches but stops — these are the grammar of Japanese emotional expression, inherited from classical literature, refined in manga, and now transmitted to sixty million fans worldwide. We design our audio experiences using the same grammar. The most important moment in our content is not the narration — it is the silence that follows.",jp:"日本アニメへのグローバルな情熱を駆動するのは「間」の伝統、意味ある沈黙の芸術です。アニメでは、キャラクターが言わないことが言うことよりも感情的な重みを持ちます。一瞥・一瞬の間・触れそうで止まる手、これらは古典文学から受け継がれ、マンガで洗練され、今や世界中の六千万人のファンへと伝えられた感情表現の文法です。私たちのコンテンツで最も重要な瞬間はナレーションではなく、その後に続く沈黙です。",cat:"深層文化・スピーキング"},
+  {en:"The concept of 'kintsugi' — the Japanese art of repairing broken pottery with gold — was added to the Oxford English Dictionary in 2024, not as a craft technique, but as a philosophical worldview. Its definition: to render visible the cracks of repair, treating damage as a part of an object's history rather than something to be hidden. Japan's regional sake breweries are, in many ways, kintsugi vessels. Hundreds of kura have closed over the past fifty years — victims of demographic decline, changing tastes, and economic consolidation. But the ones that remain carry those fractures proudly. When our voice actors speak for these breweries, they are not performing a sales pitch. They are tracing the gold seams of a living history.",jp:"「金継ぎ」という概念は2024年にオックスフォード英語辞典に収録されました。工芸技術としてではなく哲学的な世界観として。日本の地方酒蔵は多くの意味で金継ぎの器です。過去五十年で何百もの蔵が閉じましたが、生き残った蔵はその亀裂を誇りを持って抱いています。声優がこれらの蔵のために語るとき、彼らは営業トークをしているのではなく、生きた歴史の金の継ぎ目をたどっているのです。",cat:"深層文化・スピーキング"},
+  {en:"Japan's relationship with fermentation runs deeper than cuisine. At a philosophical level, fermentation embodies one of the most distinctly Japanese ideas: that transformation requires surrender. The brewer does not create sake — the brewer creates the conditions in which sake creates itself, through the invisible labor of koji mold, yeast, and the native microorganisms of the kura. This is why the concept of 'jizake' — local sake — cannot be replicated anywhere else. The microbiome of a kura in Akita is not the microbiome of a kura in Hiroshima. When you drink a jizake, you are drinking the biological fingerprint of a specific place, a specific people, a specific history. SakeAni Japan exists to make that fingerprint legible to the world.",jp:"日本と発酵の関係は料理よりも深く根ざしています。発酵は最も日本的なアイデア、変容には委ねることが必要だということを体現しています。蔵人は日本酒を作るのではなく、麹・酵母・蔵付き微生物の見えない働きを通じて日本酒が自らを作る条件を整えるのです。だからこそ「地酒」は他のどこでも再現できません。地酒を飲むとき、特定の場所・人々・歴史の生物学的指紋を飲んでいるのです。",cat:"深層文化・スピーキング"},
+  {en:"The Japanese tradition of 'yaoyorozu no kami' — eight million gods — is not a mythology of heroes and battles. It is an animist worldview in which spiritual presence inhabits rice, water, stone, fire, and every microorganism that participates in the living world. It is this tradition that makes Japanese culture so naturally inclined toward what the rest of the world calls 'character design.' When Studio Ghibli's animators gave faces to soot spirits and river gods, they were not inventing a new visual language. They were translating an ancient spiritual grammar into moving images. Our characters — Mina the water spirit, the koji mold siblings, the ancient kura yeast — emerge from this same grammar. They are not marketing mascots. They are the indigenous mythological vocabulary of Japanese brewing culture, given voice.",jp:"「八百万の神」という日本の伝統は英雄と戦いの神話ではなく、米・水・石・火・そしてすべての微生物に霊的な存在が宿るアニミズムの世界観です。この伝統が日本文化を「キャラクターデザイン」へ自然に傾かせるのです。スタジオジブリのアニメーターがすす渡りや川の神に顔を与えたとき、彼らは古代の霊的文法を動く映像へと翻訳していたのです。私たちのキャラクター、水の精霊ミナ・麹の兄弟たち・古い蔵の酵母は同じ文法から生まれています。",cat:"深層文化・スピーキング"},
+  {en:"There is a reason that the most internationally successful Japanese cultural exports — from ramen to Marie Kondo to anime — share a common structural feature: they make the invisible visible. Ramen is not soup. It is the embodiment of hours of labor, regional water chemistry, and a chef's personal philosophy of balance. Marie Kondo is not a tidying consultant. She is a translator of the Shinto concept that every object possesses a spirit. And anime is not animation. It is a medium for expressing emotional truths that cannot be spoken directly in a culture where restraint is a virtue. Sake, at its best, belongs to this same family of invisible-made-visible. SakeAni Japan's mission is to ensure that the voice is the medium through which that translation happens.",jp:"ラーメンからマリー・コンドーからアニメまで、国際的に成功した日本の文化的輸出品が共通の特徴を持つ理由があります。それらは見えないものを可視化するのです。ラーメンはスープではなく、何時間もの労働と哲学の体現です。アニメはアニメーションではなく、自制が美徳とされる文化の中で直接語れない感情的な真実を表現するための媒体です。最高の日本酒はこの同じ家族に属します。",cat:"深層文化・スピーキング"},
+  {en:"When we talk about the future of SakeAni Japan, we talk about three horizons. The first horizon is the subscription service itself — building a community of subscribers who receive sake, audio stories, and a deepening relationship with Japanese brewing culture four times a year. The second horizon is live experience — events like JapanFest Atlanta where that relationship becomes physical, sensory, communal. The third horizon is animation. The stories we are building now are architected to become an animated series. This is not a fantasy. It is a deliberate IP strategy. Every character we introduce, every seasonal story arc we develop, every kura partnership we establish is a building block of a world that, five years from now, will be legible as both an anime universe and a living cultural heritage.",jp:"サケアニジャパンの未来を語るとき、三つの地平について語ります。第一の地平はサブスクリプションサービス自体。第二の地平はJapanFest Atlantaのようなライブ体験。第三の地平はアニメ化です。私たちが今構築しているストーリーは、アニメシリーズになるよう設計されています。これは夢想ではなく意図的なIP戦略です。",cat:"深層文化・スピーキング"},
+  {en:"The Japanese word 'kokoro' is often translated as 'heart' or 'mind,' but that translation misses the point. 'Kokoro' is the unified field of thinking, feeling, and willing — the Japanese philosophical refusal to separate the intellectual from the emotional. It is the reason Japanese craftsmanship cannot be fully understood through product specifications alone. A kura master does not optimize variables. They listen. They adjust not according to a recipe but according to what the fermentation is telling them, what the season is saying, what the water feels like this year. This quality of listening — responsive, non-dominating, humble before the process — is precisely what we want our audio content to model.",jp:"日本語の「こころ」は思考・感情・意志の統合された場であり、知的なものと感情的なものを分離することへの哲学的な拒否です。蔵元は変数を最適化しません。彼らは聴くのです。レシピではなく、発酵が語ること・季節が言うこと・今年の水の感触に従って調整します。この聴く質が私たちの音声コンテンツが体現したいものです。",cat:"深層文化・スピーキング"},
+  {en:"The most frequently asked question we receive at international events is: 'Why sake? Why not anime merchandise, or a streaming platform, or a gaming IP?' Our answer is always the same. Because sake is the one Japanese cultural artifact that you cannot experience through a screen. You can watch anime on your phone. You can read manga on a tablet. But you cannot taste the mineral depth of a Niigata junmai daiginjo through any digital interface. That irreducible, embodied quality is its most radical and undervalued characteristic. In an era when nearly all cultural experience is being dematerialized, sake is a stubborn, beautiful resistance. That is what SakeAni Japan is built around: the irreplaceable experience of being here, now, drinking this.",jp:"国際イベントで最も頻繁に受ける質問は「なぜ日本酒なのか」というものです。私たちの答えは常に同じです。日本酒はスクリーンを通じて体験できない唯一の日本文化的成果物だからです。アニメはスマートフォンで見られます。しかし新潟の純米大吟醸はどんなデジタルインターフェースでも味わえません。ほぼすべての文化的体験が非物質化されている時代に、日本酒は頑固で美しい抵抗です。",cat:"深層文化・スピーキング"},
+];
+
+const LEVELS={1:L1,2:L2,3:L3};
+const LEVEL_CATS={
+  1:["挨拶","商品説明","ビジネス","イベント","クロージング"],
+  2:["文化・ビジネス説明"],
+  3:["深層文化・スピーキング"]
+};
+
+let currentLevel=1;
+let currentFilter="all";
+let currentTab="phrases";
+let shadowIdx=0;
+let speechRate=0.85;
+let isSpeaking=false;
+let currentUtterance=null;
+let chatStep=0;
+let currentScenario=0;
+let aiThinking=false;
+
+// ===== LEVEL / TAB =====
+function setLevel(lv,btn){
+  currentLevel=lv;
+  document.querySelectorAll(".lv-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  document.getElementById("aiLevelTag").textContent=`Level ${lv} 使用中`;
+  currentFilter="all";
+  shadowIdx=0;
+  if(currentTab==="phrases") renderPhrases();
+  if(currentTab==="shadow") initShadow();
+  if(currentTab==="ai") initAI();
+  renderCatFilters();
+}
+
+function showTab(tab,btn){
+  document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+  document.getElementById(tab).classList.add("active");
+  btn.classList.add("active");
+  currentTab=tab;
+  if(tab==="shadow") initShadow();
+  if(tab==="ai") initAI();
+}
+
+// ===== PHRASES =====
+function renderCatFilters(){
+  const cats=LEVEL_CATS[currentLevel];
+  const wrap=document.getElementById("catFilters");
+  wrap.innerHTML=cats.map(c=>`<button class="filter-btn${currentFilter===c?' active':''}" onclick="setFilter('${c}',this)">${c}</button>`).join("");
+}
+
+function renderPhrases(){
+  const data=LEVELS[currentLevel];
+  const q=document.getElementById("searchInput").value.toLowerCase();
+  const filtered=data.filter(p=>{
+    const okCat=currentFilter==="all"||p.cat===currentFilter;
+    const okQ=!q||p.en.toLowerCase().includes(q)||p.jp.includes(q)||(p.ex||"").toLowerCase().includes(q);
+    return okCat&&okQ;
+  });
+  const lClass=`l${currentLevel}`;
+  const grid=document.getElementById("phraseGrid");
+  if(!filtered.length){grid.innerHTML='<div class="no-results">該当するフレーズが見つかりません</div>';return;}
+  grid.innerHTML=filtered.map((p,i)=>{
+    const idx=data.indexOf(p);
+    return `<div class="phrase-card ${lClass}" onclick="this.classList.toggle('selected')">
+      <button class="speak-btn" onclick="event.stopPropagation();speakPhrase(${idx})" title="読み上げ">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+      </button>
+      <div class="phrase-num">#${String(idx+1).padStart(2,"0")}</div>
+      <span class="phrase-cat cat-${p.cat}">${p.cat}</span>
+      <div class="phrase-en">${p.en}</div>
+      <div class="phrase-jp">${p.jp}</div>
+      ${p.ex?`<div class="phrase-ex">${p.ex}</div>`:""}
+    </div>`;
+  }).join("");
+}
+
+function setFilter(cat,btn){
+  currentFilter=cat;
+  document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  renderPhrases();
+}
+
+// ===== TTS =====
+function speak(text,rate,onEnd){
+  if(!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang="en-US";u.rate=rate||speechRate;u.pitch=1;
+  currentUtterance=u;
+  if(onEnd) u.onend=onEnd;
+  window.speechSynthesis.speak(u);
+}
+
+function speakPhrase(idx){
+  const p=LEVELS[currentLevel][idx];
+  if(!p) return;
+  speak(p.en);
+}
+
+// ===== SHADOWING =====
+function initShadow(){
+  const data=LEVELS[currentLevel];
+  shadowIdx=Math.max(0,Math.min(shadowIdx,data.length-1));
+  renderShadowMain();
+  renderShadowList();
+}
+
+function renderShadowMain(){
+  const data=LEVELS[currentLevel];
+  const p=data[shadowIdx];
+  if(!p) return;
+  const isL3=currentLevel===3;
+  const words=p.en.split(" ").map((w,i)=>`<span class="word" id="w${i}">${w} </span>`).join("");
+  document.getElementById("shadowTitle").textContent=`シャドウイング — ${p.cat}`;
+  document.getElementById("shadowText").className=`shadow-text${isL3?" l3-text":""}`;
+  document.getElementById("shadowText").innerHTML=words;
+  document.getElementById("shadowJp").textContent=p.jp;
+  document.getElementById("shadowCounter").textContent=`${shadowIdx+1} / ${data.length}`;
+}
+
+function speakCurrent(){
+  const data=LEVELS[currentLevel];
+  const p=data[shadowIdx];
+  if(!p||!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const words=p.en.split(" ");
+  // highlight word by word
+  let wIdx=0;
+  const allWords=document.querySelectorAll(".word");
+  allWords.forEach(w=>w.classList.remove("highlight"));
+  const u=new SpeechSynthesisUtterance(p.en);
+  u.lang="en-US";u.rate=speechRate;
+  u.onboundary=e=>{
+    if(e.name==="word"){
+      allWords.forEach(w=>w.classList.remove("highlight"));
+      if(allWords[wIdx]) allWords[wIdx].classList.add("highlight");
+      wIdx++;
+    }
+  };
+  u.onend=()=>{allWords.forEach(w=>w.classList.remove("highlight"));};
+  document.getElementById("playBtn").style.background="#8B2020";
+  u.onend=()=>{
+    allWords.forEach(w=>w.classList.remove("highlight"));
+    document.getElementById("playBtn").style.background="var(--ink)";
+  };
+  window.speechSynthesis.speak(u);
+}
+
+function shadowNav(dir){
+  const data=LEVELS[currentLevel];
+  shadowIdx=Math.max(0,Math.min(shadowIdx+dir,data.length-1));
+  renderShadowMain();
+  renderShadowList();
+}
+
+function setSpeed(rate,btn){
+  speechRate=rate;
+  document.querySelectorAll(".speed-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+}
+
+function selectShadow(idx){
+  shadowIdx=idx;
+  renderShadowMain();
+  document.querySelector(".shadow-card").scrollIntoView({behavior:"smooth"});
+}
+
+function renderShadowList(){
+  const data=LEVELS[currentLevel];
+  const wrap=document.getElementById("shadowList");
+  wrap.innerHTML=`<div style="font-size:11px;color:var(--ink-muted);margin-bottom:.5rem;letter-spacing:.06em;text-transform:uppercase;">フレーズ一覧（クリックで選択・▶で再生）</div>`+
+  data.map((p,i)=>`
+    <div style="display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:var(--r);border:1px solid ${i===shadowIdx?"var(--red)":"var(--border)"};background:${i===shadowIdx?"var(--red-bg)":"var(--paper-card)"};margin-bottom:5px;cursor:pointer;" onclick="selectShadow(${i})">
+      <span style="font-size:10px;color:var(--ink-muted);min-width:22px;">#${String(i+1).padStart(2,"0")}</span>
+      <span style="font-size:12px;flex:1;color:var(--ink);line-height:1.4;">${p.en.substring(0,60)}${p.en.length>60?"…":""}</span>
+      <button onclick="event.stopPropagation();shadowIdx=${i};renderShadowMain();speakCurrent();" style="padding:3px 8px;border-radius:999px;border:1px solid var(--border-strong);background:transparent;cursor:pointer;font-size:11px;font-family:'DM Sans',sans-serif;color:var(--ink-soft);">▶</button>
+    </div>`).join("");
+}
+
+// ===== AI DIALOGUE =====
+const SCENARIOS=[
+  {id:"booth",title:"🎪 ブース来場者",
+   desc:"JapanFest Atlantaのブースに来場者が立ち寄りました。サービスを紹介してください。",
+   hints:[0,2,10,11,12,26,32,36,49]},
+  {id:"partner",title:"🤝 パートナー商談",
+   desc:"日系企業の担当者との商談。ビジネス提携の可能性を探る会話です。",
+   hints:[13,15,16,17,18,20,21,33,34,35]},
+  {id:"media",title:"📰 メディア取材",
+   desc:"現地メディアの記者が取材に来ました。プロジェクトの魅力を伝えましょう。",
+   hints:[14,31,33,35,36,48,49]},
+];
+
+function initAI(){
+  const tabs=document.getElementById("scenarioTabs");
+  tabs.innerHTML=SCENARIOS.map((s,i)=>`<button class="sc-btn${i===currentScenario?" active":""}" onclick="selectScenario(${i})">${s.title}</button>`).join("");
+  loadScenario();
+}
+
+function selectScenario(i){
+  currentScenario=i;chatStep=0;
+  initAI();
+}
+
+function loadScenario(){
+  const s=SCENARIOS[currentScenario];
+  document.getElementById("scenarioInfo").innerHTML=`<h3>${s.title}</h3><p>${s.desc}</p>`;
+  const L=LEVELS[currentLevel];
+  const hints=s.hints.map(i=>L[i]).filter(Boolean);
+  document.getElementById("hintBox").innerHTML=`<div class="hint-label">💡 ヒント（クリックで入力）</div><div class="hint-pills">${hints.map(p=>`<button class="hint-pill" onclick="useHint('${p.en.replace(/'/g,"\\'").substring(0,50)}')">${p.en.substring(0,36)}…</button>`).join("")}</div>`;
+  document.getElementById("chatArea").innerHTML=getOpener();
+  chatStep=0;
+}
+
+function getOpener(){
+  const openers=[
+    [{en:"Hi! What's going on at this booth?",jp:"こんにちは！このブースは何ですか？"}],
+    [{en:"I heard about your project. It sounds very interesting — tell me more.",jp:"プロジェクトについて聞きました。面白そうですね。"}],
+    [{en:"Hi, I'm from the Atlanta Japan Times. Can I ask you a few questions?",jp:"アトランタジャパンタイムズです。少し伺えますか？"}],
+  ];
+  const o=openers[currentScenario][0];
+  return buildMsg("partner",o.en,o.jp);
+}
+
+function buildMsg(role,en,jp,feedback){
+  return `<div class="msg${role==="user"?" user":""}">
+    <div class="msg-role ${role}">${role==="user"?"あなた / You":"相手 / Partner"}</div>
+    <div class="msg-bubble ${role}">${en}
+      <button class="speak-msg-btn" onclick="speak('${en.replace(/'/g,"\\'")}')"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></button>
+    </div>
+    ${jp?`<div class="msg-jp">${jp}</div>`:""}
+    ${feedback?`<div class="msg-feedback ${feedback.type}">${feedback.msg}</div>`:""}
+  </div>`;
+}
+
+function useHint(text){
+  document.getElementById("chatInput").value=text;
+  document.getElementById("chatInput").focus();
+}
+
+async function sendChat(){
+  if(aiThinking) return;
+  const input=document.getElementById("chatInput");
+  const text=input.value.trim();
+  if(!text) return;
+  const chatArea=document.getElementById("chatArea");
+
+  // feedback on user input
+  const wordCount=text.split(/\s+/).length;
+  let feedback=null;
+  if(wordCount>=8&&currentLevel>=2) feedback={type:"good",msg:"✓ Good length! Natural and informative."};
+  else if(wordCount<3) feedback={type:"improve",msg:"💡 Try a longer sentence for more impact."};
+
+  chatArea.innerHTML+=buildMsg("user",text,"",feedback);
+  input.value="";
+  chatArea.scrollTop=chatArea.scrollHeight;
+
+  // thinking indicator
+  aiThinking=true;
+  document.getElementById("sendBtn").disabled=true;
+  const thinkId="think_"+Date.now();
+  chatArea.innerHTML+=`<div id="${thinkId}" class="msg"><div class="ai-thinking"><div class="dot-anim"><span></span><span></span><span></span></div> AIが返答を生成中...</div></div>`;
+  chatArea.scrollTop=chatArea.scrollHeight;
+
+  const systemPrompt=buildSystemPrompt();
+  const history=buildHistory(chatArea);
+
+  try{
+    const resp=await fetch("https://api.anthropic.com/v1/messages",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        model:"claude-sonnet-4-20250514",
+        max_tokens:1000,
+        system:systemPrompt,
+        messages:[...history,{role:"user",content:text}]
+      })
+    });
+    const data=await resp.json();
+    const raw=data.content?.map(c=>c.text||"").join("")||"I see! Could you tell me more?";
+
+    // parse JSON response
+    let reply,replyJp,coaching;
+    try{
+      const parsed=JSON.parse(raw.replace(/```json|```/g,"").trim());
+      reply=parsed.reply||raw;
+      replyJp=parsed.jp||"";
+      coaching=parsed.coaching||"";
+    }catch{
+      reply=raw;replyJp="";coaching="";
+    }
+
+    document.getElementById(thinkId)?.remove();
+    chatArea.innerHTML+=buildMsg("partner",reply,replyJp);
+    if(coaching){
+      chatArea.innerHTML+=`<div style="margin-bottom:12px;"><div class="msg-feedback improve" style="display:block;max-width:85%;">🎯 コーチング: ${coaching}</div></div>`;
+    }
+  }catch(e){
+    document.getElementById(thinkId)?.remove();
+    const fallbacks=["That's really interesting! Could you elaborate?","Fascinating — what makes your concept unique?","I'd love to hear more about that."];
+    const fb=fallbacks[chatStep%fallbacks.length];
+    chatArea.innerHTML+=buildMsg("partner",fb,"");
+  }
+  chatStep++;
+  aiThinking=false;
+  document.getElementById("sendBtn").disabled=false;
+  chatArea.scrollTop=chatArea.scrollHeight;
+}
+
+function buildSystemPrompt(){
+  const s=SCENARIOS[currentScenario];
+  const lvDesc={1:"Basic (1-2 sentences)",2:"Intermediate (3-5 sentences, cultural explanation)",3:"Advanced (paragraph-level, deep cultural insight)"};
+  return `You are a conversation partner helping someone practice English for JapanFest Atlanta 2026. 
+You are playing the role: ${s.title} — ${s.desc}
+The learner is practicing Level ${currentLevel} English: ${lvDesc[currentLevel]}.
+
+Respond ONLY in this exact JSON format (no markdown, no extra text):
+{"reply":"[your English response as the conversation partner, 1-3 sentences]","jp":"[Japanese translation of your reply]","coaching":"[optional: one brief English coaching tip about their message, or empty string]"}
+
+Guidelines:
+- Keep replies natural and encouraging
+- Ask follow-up questions to keep conversation going
+- Coaching tip only when genuinely useful (wrong grammar, unnatural phrase, or missed opportunity)
+- Stay in character as the conversation partner throughout
+- For Level 3, use more sophisticated vocabulary in your replies`;
+}
+
+function buildHistory(chatArea){
+  const msgs=chatArea.querySelectorAll(".msg");
+  const history=[];
+  msgs.forEach(m=>{
+    const bubble=m.querySelector(".msg-bubble");
+    if(!bubble) return;
+    const role=m.classList.contains("user")?"user":"assistant";
+    // get text without the speak button text
+    const clone=bubble.cloneNode(true);
+    clone.querySelectorAll("button").forEach(b=>b.remove());
+    const text=clone.textContent.trim();
+    if(text) history.push({role,content:text});
+  });
+  return history.slice(-8);// last 8 turns
+}
+
+// ===== INIT =====
+renderCatFilters();
+renderPhrases();
+</script>
+</body>
+</html>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SakeAni JAPAN | English Phrase Master — JapanFest Atlanta 2026</title>
